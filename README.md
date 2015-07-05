@@ -1,6 +1,6 @@
 
-# osxdock
-osxdock is a javascript library to have MocOS dock menu in the browser 
+# OSX Dock
+osxdock is a javascript library to have MacOS dock in the browser 
 
 ### Live Demo
 http://osxdock.meteor.com/
