@@ -1,7 +1,7 @@
 
 Package.describe({
   name: 'garyascuy:osxdock',
-  version: '1.0.0',
+  version: '1.0.1',
   summary: 'OSX Dock is a javascript library to have MacOS dock in the browser ',
   git: 'https://github.com/Gary-Ascuy/osxdock.git',
   documentation: 'README.md'
