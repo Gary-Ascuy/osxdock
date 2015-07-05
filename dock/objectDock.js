@@ -8,6 +8,7 @@ _.extend(OSX || {}, {
   __x: 0,
   __y: 0,
   __active: false,
+  __animOn: false,
 
   setup: function(options) {
     _.extend(this._options, {
@@ -28,10 +29,9 @@ _.extend(OSX || {}, {
     this._elements.push(document.body.appendChild(img));
   },
   start: function(dialog) {
-    console.log('started');
     this._dialog = $(dialog);
     this._dialog.hide();
-    this._setText({name: "gary", info: "ascuy"});
+    this._setText({name: '', info: ''});
 
     this._updateSize();
     this._visible(true);    
@@ -116,6 +116,40 @@ _.extend(OSX || {}, {
     if (visible) OSX._dialog.show();
     else OSX._dialog.hide();
 
+    OSX.__time = new Date().getTime();
+    if (!OSX.__animOn) {
+      OSX.__animOn = true;
+      OSX._anim();
+    }
+  },
+  _anim: function() {
+    if (!OSX.__active) {
+      OSX._options.size -= OSX._options.inc;
+      if (OSX._options.size > OSX._options.min) {
+        OSX._update();
+        setTimeout('OSX._anim();', 5);
+      } else {
+        OSX.__animOn = false;
+        OSX.__active = false;
+        
+        OSX._options.size = OSX._options.min;
+        OSX._update();
+      }
+    } else {
+      OSX._options.size += OSX._options.inc;
+      if (OSX._options.size < OSX._options.max) {
+        OSX._update();
+        setTimeout('OSX._anim();', 5);
+      } else {
+        OSX.__animOn = false;
+        OSX.__active = true;
+        OSX._options.size = OSX._options.max;
+        OSX._update();
+        
+        var diff = new Date().getTime() - OSX.__time;
+        if (diff > 300) OSX._options.inc = (diff / 300.0) * 7;
+      }
+    }
   },
   _setText: function (element) {
     OSX._dialog.find('.title').html(element.name);
