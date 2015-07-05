@@ -1,1 +1,3 @@
-// Write your package code here!
+/** @copyright Gary Ascuy 2015 */
+
+OSX = OSX || {};

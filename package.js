@@ -9,7 +9,14 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
+  api.use('underscore');
+  api.use('jquery');
+
   api.addFiles('main.js');
+  api.addFiles('dock/eventManager.js');
+  api.addFiles('dock/objectDock.js');
+
+  api.export('OSX', 'client');
 });
 
 Package.onTest(function(api) {
