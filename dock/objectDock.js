@@ -113,8 +113,8 @@ _.extend(OSX || {}, {
   },
   _show: function(visible) {
     OSX.__active = visible;
-    if (visible) OSX._dialog.show();
-    else OSX._dialog.hide();
+    if (visible) OSX._dialog.fadeIn(1000);
+    else OSX._dialog.fadeOut();
 
     OSX.__time = new Date().getTime();
     if (!OSX.__animOn) {
